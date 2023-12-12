@@ -114,7 +114,7 @@ a {
 .nav_icon {
   font-size: 1.25rem;
 }
-.show {
+.show-leftbar {
   left: 0;
 }
 .body-pd {
@@ -154,7 +154,7 @@ a {
     left: 0;
     padding: 1rem 1rem 0 0;
   }
-  .show {
+  .show-leftbar {
     width: calc(var(--nav-width) + 156px);
   }
   .body-pd {
@@ -270,8 +270,8 @@ a {
   padding-top: 5px 3px;
   flex: 1;
 }
-.ruang-kelas{
-  flex:2;
+.ruang-kelas {
+  flex: 2;
 }
 .card-jadwal-list {
   border-radius: 10px;
@@ -324,4 +324,10 @@ a {
   display: flex;
   justify-content: center;
   margin: 25px 0 20px 0;
+}
+.container-body {
+  padding: 15px;
+}
+.container-body-header {
+  margin-bottom: 10px;
 }

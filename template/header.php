@@ -15,7 +15,7 @@
       href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
     />
   </head>
-  <link rel="stylesheet" href="public/style.css" />
+  <link rel="stylesheet" href="../public/style.css" />
   <body id="body-pd">
   <?php include 'sidebar.php'; ?>
 
