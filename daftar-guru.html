@@ -40,7 +40,7 @@
             flex-shrink: 0;
             background-color: white;
             border-radius: 12px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
             width: 100%;
         }
 
@@ -61,7 +61,6 @@
 
         .faq-section ul {
             text-align: left;
-            margin-left: 20px;
         }
 
         .faq-section li {
@@ -100,6 +99,56 @@
 
         .contact-section button:hover {
             background-color: #F8E770;
+        }
+
+
+        .teacher-section {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 17px;
+            flex-shrink: 0;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            padding: 20px;
+        }
+
+        .teacher-section h2,
+        .teacher-section .teacher-info {
+            font-weight: bold;
+        }
+
+        .teacher-section h2 {
+            width: 128px;
+            flex-shrink: 0;
+            color: #333;
+            font-size: 40px;
+            margin-bottom: 1rem;
+            margin-top: 20px;
+        }
+
+        .teacher-section .teacher-info {
+            text-align: left;
+            width: 100%;
+        }
+
+        .teacher-section .teacher-info img {
+            width: 100px;
+            /* Set the width of the teacher image */
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .teacher-section .teacher-info p {
+            color: #000;
+            font-family: Poppins;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -176,22 +225,25 @@
     </div>
 
     <!-- Main content -->
-    <main class="height-100">
+    <main class="height">
         <div class="wrapper">
             <main>
-                <section class="faq-section">
-                    <h2>FAQ</h2>
-                    <ul>
-                        <li>What is ACC's difference from other tutoring services?</li>
-                        <li>What are the advantages of ACC Bimbel?</li>
-                        <li>How to make a payment?</li>
-                    </ul>
-                    <a href="#" class="view-all-link">Lihat semua pertanyaan</a>
+                <section class="teacher-section">
+                    <h2>Our Teachers</h2>
+                    <div class="teacher-info">
+                        <img src="teacher1.jpg" alt="Teacher 1">
+                        <p>ID: T001</p>
+                        <p>Name: John Doe</p>
+                    </div>
+                    <div class="teacher-info">
+                        <img src="teacher2.jpg" alt="Teacher 2">
+                        <p>ID: T002</p>
+                        <p>Name: Jane Smith</p>
+                    </div>
+                    <!-- Add more teacher-info divs as needed -->
                 </section>
 
-                <section class="contact-section">
-                    <button>Hubungi Kami</button>
-                </section>
+                <!-- Remaining sections remain unchanged -->
             </main>
         </div>
     </main>
