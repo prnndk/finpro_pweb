@@ -1,9 +1,46 @@
+<?php
+
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'finpro_pweb';
+
+// Create connection
+$connect = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($connect->connect_error) {
+    exit('Connection failed: '.$connect->connect_error);
+}
+
+// Query untuk mendapatkan data guru
+$query = "SELECT * FROM guru";
+$result = $connect->query($query);
+
+// Memeriksa apakah query berhasil dieksekusi
+if ($result === false) {
+    echo 'Error: '.$connect->error;
+} else {
+    // Mendapatkan hasil query sebagai array asosiatif
+    while ($row = $result->fetch_assoc()) {
+        // Lakukan sesuatu dengan data guru, contohnya:
+        echo 'ID: ' . $row['id'] . '<br>';
+        echo 'Nama: ' . $row['nama'] . '<br>';
+        echo 'Cabang ID: ' . $row['cabang_id'] . '<br>';
+        echo '<br>';
+    }
+}
+
+// Menutup koneksi
+$connect->close();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta nama="viewport" content="width=device-width, initial-scale=1" />
     <title>Dashboard Bimbel ACC</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -30,79 +67,7 @@
             margin-top: 20px;
         }
 
-
-        .faq-section {
-            display: inline-flex;
-            height: 369px;
-            flex-direction: column;
-            align-items: center;
-            gap: 17px;
-            flex-shrink: 0;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            width: 100%;
-        }
-
-        .faq-section h2,
-        .faq-section li {
-            font-weight: bold;
-
-        }
-
-        .faq-section h2 {
-            width: 128px;
-            flex-shrink: 0;
-            color: #333;
-            font-size: 40px;
-            margin-bottom: 1rem;
-            margin-top: 20px;
-        }
-
-        .faq-section ul {
-            text-align: left;
-        }
-
-        .faq-section li {
-            color: #000;
-            font-family: Poppins;
-            font-size: 32px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: normal;
-        }
-
-        .view-all-link {
-            width: 806px;
-            flex-shrink: 0;
-            color: #51B2E8;
-            font-family: Poppins;
-            font-size: 24px;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-        }
-
-
-        .contact-section button {
-            font-weight: bold;
-            font-size: 24px;
-            color: #000;
-            background-color: #F5E436;
-            padding: 12px 14px;
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            cursor: pointer;
-            margin: 40px;
-        }
-
-        .contact-section button:hover {
-            background-color: #F8E770;
-        }
-
-
-        .teacher-section {
+        .guru-section {
             display: inline-flex;
             flex-direction: column;
             align-items: center;
@@ -110,17 +75,17 @@
             flex-shrink: 0;
             background-color: white;
             border-radius: 12px;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
             width: 100%;
             padding: 20px;
         }
 
-        .teacher-section h2,
-        .teacher-section .teacher-info {
+        .guru-section h2,
+        .guru-section .guru-info {
             font-weight: bold;
         }
 
-        .teacher-section h2 {
+        .guru-section h2 {
             width: 128px;
             flex-shrink: 0;
             color: #333;
@@ -129,19 +94,19 @@
             margin-top: 20px;
         }
 
-        .teacher-section .teacher-info {
+        .guru-section .guru-info {
             text-align: left;
             width: 100%;
         }
 
-        .teacher-section .teacher-info img {
+        .guru-section .guru-info img {
             width: 100px;
-            /* Set the width of the teacher image */
+            /* Set the width of the guru image */
             border-radius: 50%;
             margin-right: 10px;
         }
 
-        .teacher-section .teacher-info p {
+        .guru-section .guru-info p {
             color: #000;
             font-family: Poppins;
             font-size: 18px;
@@ -188,78 +153,96 @@
             <div>
                 <a href="#" class="nav_logo">
                     <i class="bx bx-layer nav_logo-icon"></i>
-                    <span class="nav_logo-name">ACC BIMBEL</span>
+                    <span class="nav_logo-nama">ACC BIMBEL</span>
                 </a>
                 <div class="nav_list">
                     <a href="#" class="nav_link active">
                         <i class="bx bx-grid-alt nav_icon"></i>
-                        <span class="nav_name">Dashboard</span>
+                        <span class="nav_nama">Dashboard</span>
                     </a>
                     <a href="#" class="nav_link">
                         <i class="bx bx-user nav_icon"></i>
-                        <span class="nav_name">Users</span>
+                        <span class="nav_nama">Users</span>
                     </a>
                     <a href="#" class="nav_link">
                         <i class="bx bx-message-square-detail nav_icon"></i>
-                        <span class="nav_name">Messages</span>
+                        <span class="nav_nama">Messages</span>
                     </a>
                     <a href="#" class="nav_link">
                         <i class="bx bx-bookmark nav_icon"></i>
-                        <span class="nav_name">Bookmark</span>
+                        <span class="nav_nama">Bookmark</span>
                     </a>
                     <a href="#" class="nav_link">
                         <i class="bx bx-folder nav_icon"></i>
-                        <span class="nav_name">Files</span>
+                        <span class="nav_nama">Files</span>
                     </a>
                     <a href="#" class="nav_link">
                         <i class="bx bx-bar-chart-alt-2 nav_icon"></i>
-                        <span class="nav_name">Stats</span>
+                        <span class="nav_nama">Stats</span>
                     </a>
                 </div>
             </div>
             <a href="#" class="nav_link">
                 <i class="bx bx-log-out nav_icon"></i>
-                <span class="nav_name">SignOut</span>
+                <span class="nav_nama">SignOut</span>
             </a>
         </nav>
     </div>
 
-    <!-- Main content -->
-    <main class="height">
-        <div class="wrapper">
-            <main>
-                <section class="teacher-section">
-                    <h2>Our Teachers</h2>
-                    <div class="teacher-info">
-                        <img src="teacher1.jpg" alt="Teacher 1">
-                        <p>ID: T001</p>
-                        <p>Name: John Doe</p>
-                    </div>
-                    <div class="teacher-info">
-                        <img src="teacher2.jpg" alt="Teacher 2">
-                        <p>ID: T002</p>
-                        <p>Name: Jane Smith</p>
-                    </div>
-                    <!-- Add more teacher-info divs as needed -->
-                </section>
+    <body id="body-pd">
 
-                <!-- Remaining sections remain unchanged -->
-            </main>
+        <?php include 'sidebar.php'; ?>
+
+        <nav class="navbar nav-primary header" id="header">
+            <!-- Navbar content remains unchanged -->
+        </nav>
+
+        <div class="l-navbar" id="nav-bar">
+            <!-- Sidebar content remains unchanged -->
         </div>
-    </main>
 
-    <footer>
-        <div class="footer">
-            <p>
-                Made with <i class="bx bxs-heart"></i> by
-                <a href="/">Actual Cendekia Course</a>
-            </p>
-        </div>
-    </footer>
+        <!-- Main content -->
+        <main class="height">
+    <div class="wrapper">
+        <h2>Our gurus</h2>
+        <main>
+            <section class="guru-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama</th>
+                            <th>Cabang</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Loop through the gurus array
+                        foreach ($gurus as $guru) {
+                            echo '<tr>';
+                            echo '<td>' . $guru['id'] . '</td>';
+                            echo '<td>' . $guru['nama'] . '</td>';
+                            echo '<td>' . $guru['cabang_id'] . '</td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </section>
+        </main>
 
-    <script src="../public/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</body>
+        <footer>
+            <div class="footer">
+                <p>
+                    Made with <i class="bx bxs-heart"></i> by
+                    <a href="/">Actual Cendekia Course</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="../public/index.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </body>
 
 </html>
