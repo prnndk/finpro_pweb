@@ -1,6 +1,7 @@
 <?php
+require_once '../isAdmin.php';
 include_once '../connection.php';
-
+global $connect;
 $get_cabang_query = "SELECT * FROM cabang";
 $get_cabang_result = mysqli_query($connect, $get_cabang_query);
 $get_cabang = mysqli_fetch_all($get_cabang_result, MYSQLI_ASSOC);
