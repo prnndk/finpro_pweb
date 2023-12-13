@@ -16,22 +16,22 @@
                     <form action="register_process.php" method="POST">
                         <div class="ms-5 w-75">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                         </div>
 
                         <div class="ms-5 w-75">
                             <label for="exampleInputEmail1" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                         </div>
 
                         <div class="ms-5 w-75">
                             <label for="exampleInputEmail1" class="form-label">Username</label>
-                            <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                         </div>
 
                         <div class="ms-5 w-75">
                             <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control mb-4" name="password" id="exampleInputPassword1">
+                            <input type="password" class="form-control mb-4" name="password" id="exampleInputPassword1" required>
                         </div>
                         <div class="mb-5 ms-5 w-100">
                             <button type="submit" name="register" class="btn border-primary btn-light w-75">Register</button>
