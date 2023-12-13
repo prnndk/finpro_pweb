@@ -74,7 +74,7 @@ require_once '../template/header.php';
                 <div class="card-statistic-text">Pendaftar Ditolak</div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Pendaftar Terbaru</div>
                 <div class="card-body">
@@ -104,63 +104,6 @@ require_once '../template/header.php';
                                 </td>
                             </tr>
                             <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">Categories</div>
-                <div class="card-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Category Name</th>
-                                <th scope="col">Number of Courses</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Category 1</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <td>Category 2</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <td>Category 3</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <td>Category 4</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <td>Category 5</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <td>Category 6</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <td>Category 7</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <td>Category 8</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <td>Category 9</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <td>Category 10</td>
-                                <td>5</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

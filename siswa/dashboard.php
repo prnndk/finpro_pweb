@@ -41,7 +41,7 @@ require_once '../template/header.php';
                 <img src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
                     alt="" width="200" height="150" class="profile-image d-none d-lg-flex" />
                 <div class="profile-nama p-4">
-                    <h3 class="fw-semibold">Hello, Nama Pengguna</h3>
+                    <h3 class="fw-semibold">Hello, Nama Testing</h3>
                     <a href="#">Go to my profile</a>
                 </div>
             </div>
