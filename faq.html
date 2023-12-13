@@ -190,7 +190,8 @@
                 </section>
 
                 <section class="contact-section">
-                    <button>Hubungi Kami</button>
+                    <button id="btnHubungiKami">Hubungi Kami</button>
+
                 </section>
             </main>
         </div>
@@ -208,6 +209,22 @@
     <script src="../public/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnHubungiKami').on('click', function () {
+                // Ganti nomor WA dan pesan sesuai kebutuhan
+                var phoneNumber = '628977452963'; // Ganti dengan nomor WhatsApp yang diinginkan
+                var message = 'Halo, saya memiliki pertanyaan'; // Ganti dengan pesan default
+
+                // Membuat link WhatsApp API
+                var whatsappLink = 'https://api.whatsapp.com/send?phone=' + phoneNumber + '&text=' + encodeURIComponent(message);
+
+                // Buka link WhatsApp
+                window.open(whatsappLink, '_blank');
+            });
+        });
+    </script>
+
 </body>
 
 </html>
