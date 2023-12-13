@@ -1,4 +1,10 @@
-<?php require_once 'template/header.php'; ?>
+<?php 
+
+if(!isset($_SESSION("user"))){
+  echo "not log in";
+}
+
+require_once 'template/header.php'; ?>
 <div class="container container-boxed main-content">
       <div class="container-header">Statistik Aplikasi</div>
       <div class="row p-4">
