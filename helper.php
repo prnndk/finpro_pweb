@@ -29,6 +29,15 @@ function toIndonesiaDate()
 
     return $current_date_day;
 }
+function getUserData(){
+    include 'connection.php';
+    $user_id = getUserId();
+    $query = "SELECT * FROM users WHERE id = '$user_id'";
+    $result = mysqli_query($connect, $query);
+    $user = mysqli_fetch_assoc($result);
+    return $user;
+}
+
 // static function to get user_id
 function getUserId()
 {

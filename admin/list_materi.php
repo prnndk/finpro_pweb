@@ -1,5 +1,5 @@
 <?php
-
+require_once '../isAdmin.php';
 if (!isset($_GET['id'])) {
     header('Location: kelas.php');
 }

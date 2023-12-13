@@ -1,8 +1,10 @@
 <?php
 
-// check is user admin from login session
-if ($_SESSION['isAdmin'] == 1) {
-    echo 'You are admin';
-} else {
-    echo 'You are not admin';
+//cek is user adin
+require_once 'isLogin.php';
+
+if ($_SESSION['isAdmin'] !== true) {
+    header('location: ../siswa/dashboard.php');
+    exit;
 }
+

@@ -1,4 +1,6 @@
 <?php
+
+require_once '../isAdmin.php';
 // get header kelas_id
 $kelas_id = $_GET['kelas_id'];
 $pengajar_id = $_GET['pengajar_id'];

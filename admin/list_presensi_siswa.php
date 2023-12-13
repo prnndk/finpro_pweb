@@ -1,4 +1,5 @@
 <?php
+require_once '../isAdmin.php';
 // get header kelas_id
 $absen_id = $_GET['id'];
 include_once '../connection.php';
