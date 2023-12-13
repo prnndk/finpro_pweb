@@ -1,6 +1,8 @@
 <?php
 include_once '../connection.php';
 
+// ...
+// Query untuk mendapatkan data pengajar dengan kolom mapel dan cabang_id
 $get_pengajar_query = "SELECT * FROM pengajar";
 $get_pengajar_result = mysqli_query($connect, $get_pengajar_query);
 $get_pengajar = mysqli_fetch_all($get_pengajar_result, MYSQLI_ASSOC);
@@ -16,6 +18,9 @@ include_once '../template/header.php';
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nama Pengajar</th>
+                <th scope="col">Mapel</th>
+                <th scope="col">Kode</th>
+                <th scope="col">Cabang</th>
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
@@ -24,6 +29,9 @@ include_once '../template/header.php';
                 <tr>
                     <td><?php echo $pengajar['id']; ?></td>
                     <td><?php echo $pengajar['nama']; ?></td>
+                    <td><?php echo $pengajar['mapel']; ?></td>
+                    <td><?php echo $pengajar['kode']; ?></td>
+                    <td><?php echo $pengajar['cabang_id']; ?></td>
                     <td>
                         <!-- Tambahkan tombol untuk aksi pengajar, misalnya untuk menghapus -->
                         <button class="btn btn-danger btn-sm">Hapus</button>
@@ -47,6 +55,12 @@ include_once '../template/header.php';
                 <form method="post" id="tambah_pengajar">
                     <label for="nama_pengajar">Nama Pengajar</label>
                     <input type="text" name="nama_pengajar" id="nama_pengajar" class="form-control mb-3" required>
+                    <label for="mapel">Mapel</label>
+                    <input type="text" name="mapel" id="mapel" class="form-control mb-3" required>
+                    <label for="kode">Kode</label>
+                    <input type="text" name="kode" id="kode" class="form-control mb-3" required>
+                    <label for="cabang_id">Cabang</label>
+                    <input type="text" name="cabang_id" id="cabang_id" class="form-control mb-3" required>
                     <!-- Tambahkan input untuk informasi pengajar lainnya sesuai kebutuhan -->
                     <button type="submit" id="tambah_pengajar_btn" class="btn btn-primary">Tambah Pengajar</button>
                 </form>
