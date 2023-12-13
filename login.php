@@ -18,16 +18,16 @@
                     <form method="post" action="login_proccess.php">
                         <div class="ms-5 w-75">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                         </div>
                         <div class="ms-5 w-75">
                             <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control mb-4" id="exampleInputPassword1">
+                            <input type="password" name="password" class="form-control mb-4" id="exampleInputPassword1" required>
                         </div>
                         <div class="mb-5 ms-5 w-100">
                             <button type="submit" class="btn border-primary btn-light w-75">Login</button>
                             <div id="Signup" class="form-text text-center mt-3 w-75">
-                                Doesn't have account? <a class="text-primary" href="register.html">Signup here</a>
+                                Doesn't have account? <a class="text-primary" href="register.php">Signup here</a>
                             </div>
                         </div>
                         

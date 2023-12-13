@@ -9,26 +9,26 @@
 <body>
     <nav class="navbar fixed-top navbar-expand-lg bg-info">
         <div class="container-fluid">
-            <a class="navbar-brand text-light fw-bold" href="#">BIMBEL ACC</a>
+            <a class="navbar-brand text-light fw-bold" href="index.php">BIMBEL ACC</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Pendaftaran Baru</a>
+                        <a class="nav-link active" aria-current="page" href="register.php">Pendaftaran Baru</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Lokasi</a>
+                        <a class="nav-link active" href="#lokasi">Lokasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#">Informasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Mata Pelajaran</a>
+                        <a class="nav-link active" href="siswa/dashboard.php">Mata Pelajaran</a>
                     </li>
                 </ul>
-                <a href="login.html" class="btn btn-outline-light me-2" type="button">Login</a>
+                <a href="login.php" class="btn btn-outline-light me-2" type="button">Login</a>
             </div>
         </div>
     </nav>
@@ -53,14 +53,14 @@
                 <div class="col-3 text-center">
                     <img src="image/go_to_class.png" class="img-fluid" alt="gotoclass">
                     <div class="text-center">
-                        <a href="#" class="btn text-black btn-outline-light" onclick="goToPage()">Go to Class</a>
+                        <a href="siswa/dashboard.php" class="btn text-black btn-outline-light" onclick="goToPage()">Go to Class</a>
                     </div>
                 </div>
                     
                 <div class="col-3 text-center">
                     <img src="image/register.png" class="img-fluid" alt="registerasstudent">
                     <div class="text-center">
-                        <a href="#" class="btn text-black btn-outline-light" onclick="goToPage()">Register as Student</a>
+                        <a href="register.php" class="btn text-black btn-outline-light" onclick="goToPage()">Register as Student</a>
                     </div>
                 </div>
     
@@ -84,7 +84,7 @@
     </div>
 
     <div class="text-center mt-5 mb-4">
-        <h1>
+        <h1 id="lokasi">
             OUR LOCATION
         </h1>
     </div>
@@ -117,7 +117,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <img src="/image/Rectangle 6.png" class="img-fluid" alt="alamat">
+                    <img src="image/Rectangle 6.png" class="img-fluid" alt="alamat">
                 </div>
             </div>
         </div>
@@ -133,7 +133,7 @@
         <div class="col-10 pt-5 pb-5">
             <div class="row justify-content-around">
                 <div class="col-3 text-center">
-                    <img src="/image/Rectangle 8.png" class="img-fluid" alt="wendy">
+                    <img src="image/Rectangle 8.png" class="img-fluid" alt="wendy">
                 </div>
                     
                 <div class="col-3 text-center">
