@@ -1,8 +1,33 @@
 <?php
 include_once '../connection.php';
 
-// ...
-// Query untuk mendapatkan data pengajar dengan kolom mapel dan cabang_id
+// Proses form jika ada data yang dikirim
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nama_pengajar = $_POST['nama_pengajar'];
+    $mapel = $_POST['mapel'];
+    $kode = $_POST['kode'];
+    $cabang_id = $_POST['cabang_id'];
+
+    // Proses unggah file
+    $file_name = $_FILES['file']['name'];
+    $file_tmp = $_FILES['file']['tmp_name'];
+    $file_destination = "../uploads/" . $file_name;
+
+    // Pindahkan file ke lokasi tujuan
+    move_uploaded_file($file_tmp, $file_destination);
+
+    // Query untuk menambahkan data pengajar beserta nama file
+    $insert_pengajar_query = "INSERT INTO pengajar (nama, mapel, kode, cabang_id, file_name) VALUES ('$nama_pengajar', '$mapel', '$kode', '$cabang_id', '$file_name')";
+    $insert_pengajar_result = mysqli_query($connect, $insert_pengajar_query);
+
+    if ($insert_pengajar_result) {
+        echo "Data Pengajar berhasil ditambahkan!";
+    } else {
+        echo "Gagal menambahkan data Pengajar: " . mysqli_error($connect);
+    }
+}
+
+// Query untuk mendapatkan data pengajar
 $get_pengajar_query = "SELECT * FROM pengajar";
 $get_pengajar_result = mysqli_query($connect, $get_pengajar_query);
 $get_pengajar = mysqli_fetch_all($get_pengajar_result, MYSQLI_ASSOC);
@@ -10,98 +35,50 @@ $get_pengajar = mysqli_fetch_all($get_pengajar_result, MYSQLI_ASSOC);
 include_once '../template/header.php';
 ?>
 
-<div class="container container-boxed main-content">
-    <div class="container-header">Daftar Pengajar</div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pengajarModal">Tambah Pengajar</button>
-    <table class="table">
-        <thead>
+<!-- Tambahkan form langsung ke halaman -->
+<form method="post" enctype="multipart/form-data">
+    <label for="nama_pengajar">Nama Pengajar</label>
+    <input type="text" name="nama_pengajar" required>
+
+    <label for="mapel">Mapel</label>
+    <input type="text" name="mapel" required>
+
+    <label for="kode">Kode</label>
+    <input type="text" name="kode" required>
+
+    <label for="cabang_id">Cabang</label>
+    <input type="text" name="cabang_id" required>
+
+    <label for="file">Unggah File</label>
+    <input type="file" name="file" accept=".pdf, .doc, .docx">
+
+    <button type="submit">Tambah Pengajar</button>
+</form>
+
+<!-- Tampilkan daftar pengajar -->
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nama Pengajar</th>
+            <th>Mapel</th>
+            <th>Kode</th>
+            <th>Cabang</th>
+            <th>File</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($get_pengajar as $pengajar) { ?>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nama Pengajar</th>
-                <th scope="col">Mapel</th>
-                <th scope="col">Kode</th>
-                <th scope="col">Cabang</th>
-                <th scope="col">Aksi</th>
+                <td><?php echo $pengajar['id']; ?></td>
+                <td><?php echo $pengajar['nama']; ?></td>
+                <td><?php echo $pengajar['mapel']; ?></td>
+                <td><?php echo $pengajar['kode']; ?></td>
+                <td><?php echo $pengajar['cabang_id']; ?></td>
+                <td><?php echo $pengajar['file_name']; ?></td>
             </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($get_pengajar as $pengajar) { ?>
-                <tr>
-                    <td><?php echo $pengajar['id']; ?></td>
-                    <td><?php echo $pengajar['nama']; ?></td>
-                    <td><?php echo $pengajar['mapel']; ?></td>
-                    <td><?php echo $pengajar['kode']; ?></td>
-                    <td><?php echo $pengajar['cabang_id']; ?></td>
-                    <td>
-                        <!-- Tambahkan tombol untuk aksi pengajar, misalnya untuk menghapus -->
-                        <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-</div>
+        <?php } ?>
+    </tbody>
+</table>
 
-<!-- Modal for adding pengajar -->
-<div class="modal fade" id="pengajarModal" tabindex="-1" aria-labelledby="pengajarModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="pengajarModalLabel">Tambah Pengajar</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div id="error_catcher_pengajar"></div>
-                <form method="post" id="tambah_pengajar">
-                    <label for="nama_pengajar">Nama Pengajar</label>
-                    <input type="text" name="nama_pengajar" id="nama_pengajar" class="form-control mb-3" required>
-                    <label for="mapel">Mapel</label>
-                    <input type="text" name="mapel" id="mapel" class="form-control mb-3" required>
-                    <label for="kode">Kode</label>
-                    <input type="text" name="kode" id="kode" class="form-control mb-3" required>
-                    <label for="cabang_id">Cabang</label>
-                    <input type="text" name="cabang_id" id="cabang_id" class="form-control mb-3" required>
-                    <!-- Tambahkan input untuk informasi pengajar lainnya sesuai kebutuhan -->
-                    <button type="submit" id="tambah_pengajar_btn" class="btn btn-primary">Tambah Pengajar</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function() {
-        $('#tambah_pengajar').on("submit", function(event) {
-            event.preventDefault();
-
-            $.ajax({
-                url: "tambah_pengajar.php", // Sesuaikan dengan file yang akan menangani penambahan pengajar
-                method: "POST",
-                data: $('#tambah_pengajar').serialize(),
-                success: function(data) {
-                    $('#tambah_pengajar')[0].reset();
-                    $('#error_catcher_pengajar').empty();
-                    $('#error_catcher_pengajar').append(
-                        `<div class="alert alert-success" role="alert">Berhasil Menambah Pengajar</div>`
-                    );
-                    // location.reload();
-                },
-                error: function(param) {
-                    const error_msg = JSON.parse(param.responseText);
-                    $('#error_catcher_pengajar').empty();
-                    $('#error_catcher_pengajar').append(`<div class="alert alert-danger" role="alert">
-                            ${error_msg.error}
-                        </div>`);
-                }
-            });
-        });
-    });
-</script>
-
-<?php
-include_once '../template/footer.php';
-?>
+<?php include_once '../template/footer.php'; ?>
