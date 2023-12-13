@@ -8,14 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $kode = $_POST['kode'];
     $cabang_id = $_POST['cabang_id'];
 
-    // Proses unggah file
-    $file_name = $_FILES['file']['name'];
-    $file_tmp = $_FILES['file']['tmp_name'];
-    $file_destination = "../uploads/" . $file_name;
-
-    // Pindahkan file ke lokasi tujuan
-    move_uploaded_file($file_tmp, $file_destination);
-
     // Query untuk menambahkan data pengajar beserta nama file
     $insert_pengajar_query = "INSERT INTO pengajar (nama, mapel, kode, cabang_id, file_name) VALUES ('$nama_pengajar', '$mapel', '$kode', '$cabang_id', '$file_name')";
     $insert_pengajar_result = mysqli_query($connect, $insert_pengajar_query);
