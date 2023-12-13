@@ -41,9 +41,6 @@ include_once '../template/header.php';
     <label for="cabang_id">Cabang</label>
     <input type="text" name="cabang_id" required>
 
-    <label for="file">Unggah File</label>
-    <input type="file" name="file" accept=".pdf, .doc, .docx">
-
     <button type="submit">Tambah Pengajar</button>
 </form>
 
@@ -56,7 +53,6 @@ include_once '../template/header.php';
             <th>Mapel</th>
             <th>Kode</th>
             <th>Cabang</th>
-            <th>File</th>
         </tr>
     </thead>
     <tbody>
@@ -67,7 +63,6 @@ include_once '../template/header.php';
                 <td><?php echo $pengajar['mapel']; ?></td>
                 <td><?php echo $pengajar['kode']; ?></td>
                 <td><?php echo $pengajar['cabang_id']; ?></td>
-                <td><?php echo $pengajar['file_name']; ?></td>
             </tr>
         <?php } ?>
     </tbody>
