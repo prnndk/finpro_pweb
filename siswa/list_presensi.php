@@ -1,14 +1,17 @@
 <?php
-// get header kelas_id
+require_once '../isLogin.php';
 $kelas_id = $_GET['kelas_id'];
 include_once '../connection.php';
+include_once '../helper.php';
+global $connect;
+$user_id = getUserId();
 $query_kelas = "SELECT nama, kode_kelas from kelas where id = '$kelas_id'";
 $result_kelas = mysqli_query($connect, $query_kelas);
 $kelas = mysqli_fetch_assoc($result_kelas);
 if (!$kelas) {
     header('Location:absensi.php?error=true');
 }
-$query_presensi_siswa_query = "SELECT a.expired_at, a.created_at, abs.kehadiran FROM absen_kelas a left join absen_siswa abs on a.id = abs.absen_id where a.kelas_id = '$kelas_id' AND abs.siswa_id = 1";
+$query_presensi_siswa_query = "SELECT a.expired_at, a.created_at, abs.kehadiran FROM absen_kelas a left join absen_siswa abs on a.id = abs.absen_id where a.kelas_id = '$kelas_id' AND abs.siswa_id = '$user_id'";
 $query_presensi_siswa_result = mysqli_query($connect, $query_presensi_siswa_query);
 $presensi_siswa = mysqli_fetch_all($query_presensi_siswa_result, MYSQLI_ASSOC);
 $presensi_siswa = array_map(function ($item) {

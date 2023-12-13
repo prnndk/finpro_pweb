@@ -1,5 +1,5 @@
 <?php
-
+require_once '../isAdmin.php';
 if (!isset($_GET['kelas_id']) && !isset($_GET['pengajar_id'])) {
     header('Location: nilai.php');
 }

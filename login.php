@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_SESSION['login'])){
+    header('Location: siswa/dashboard.php');
+    exit;
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>

@@ -1,7 +1,10 @@
 <?php
-
+require_once '../isLogin.php';
 include_once '../connection.php';
-$nilai_siswa_query = 'SELECT k.nama as nama_kelas, n.nilai, n.catatan FROM nilai_siswa n join kelas k on n.kelas_id = k.id join siswas s on n.siswa_id = s.id WHERE n.siswa_id = 1';
+include_once '../helper.php';
+global $connect;
+$user_id = getUserId();
+$nilai_siswa_query = 'SELECT k.nama as nama_kelas, n.nilai, n.catatan FROM nilai_siswa n join kelas k on n.kelas_id = k.id join siswas s on n.siswa_id = s.id WHERE n.siswa_id = '.$user_id;
 $nilai_siswa_result = mysqli_query($connect, $nilai_siswa_query);
 $nilai_siswa = mysqli_fetch_all($nilai_siswa_result, MYSQLI_ASSOC);
 include_once '../template/header.php'; ?>

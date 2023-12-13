@@ -1,5 +1,5 @@
 <?php
-
+require_once '../isLogin.php';
 include '../connection.php';
 if (!empty($_POST)) {
     $output = '';

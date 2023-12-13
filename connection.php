@@ -2,7 +2,7 @@
 
 $servername = 'localhost';
 $username = 'root';
-$password = 'mlikiwe123';
+$password = '';
 $database = 'finpro_pweb';
 
 // Create connection

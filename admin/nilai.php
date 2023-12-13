@@ -1,5 +1,5 @@
 <?php
-
+require_once '../isAdmin.php';
 include_once '../connection.php';
 $data_kelas_absen = 'SELECT k.id, k.nama as nama_kelas ,k.kode_kelas, p.nama, k.pengajar_id, k.nama as nama_pengajar FROM kelas k join pengajar p on k.pengajar_id = p.id';
 $data_kelas_absen_result = mysqli_query($connect, $data_kelas_absen);

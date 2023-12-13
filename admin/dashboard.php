@@ -1,9 +1,6 @@
 <?php
 
-session_start();
-if ($_SESSION['isAdmin'] == false) {
-    header('location:index.php?error=true');
-}
+require_once '../isAdmin.php';
 include_once '../connection.php';
 // count tota kelas
 $query_kelas = 'SELECT COUNT(*) AS total_kelas FROM kelas';

@@ -1,5 +1,5 @@
 <?php
-
+require_once '../isAdmin.php';
 include '../connection.php';
     // get header for id and status kehadiran
     if(!empty($_POST)){
