@@ -51,14 +51,14 @@
         <div class="col-10 pt-5 pb-5 border-3 shadow bg-light rounded-1">
             <div class="row justify-content-around">
                 <div class="col-3 text-center">
-                    <img src="/image/go_to_class.png" class="img-fluid" alt="gotoclass">
+                    <img src="image/go_to_class.png" class="img-fluid" alt="gotoclass">
                     <div class="text-center">
                         <a href="#" class="btn text-black btn-outline-light" onclick="goToPage()">Go to Class</a>
                     </div>
                 </div>
                     
                 <div class="col-3 text-center">
-                    <img src="/image/register.png" class="img-fluid" alt="registerasstudent">
+                    <img src="image/register.png" class="img-fluid" alt="registerasstudent">
                     <div class="text-center">
                         <a href="#" class="btn text-black btn-outline-light" onclick="goToPage()">Register as Student</a>
                     </div>
