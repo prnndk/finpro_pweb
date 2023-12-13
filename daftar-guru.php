@@ -13,8 +13,8 @@ if ($connect->connect_error) {
     exit('Connection failed: '.$connect->connect_error);
 }
 
-// Query untuk mendapatkan data guru
-$query = "SELECT * FROM guru";
+// Query untuk mendapatkan data pengajar
+$query = "SELECT * FROM pengajar";
 $result = $connect->query($query);
 
 // Memeriksa apakah query berhasil dieksekusi
@@ -23,7 +23,7 @@ if ($result === false) {
 } else {
     // Mendapatkan hasil query sebagai array asosiatif
     while ($row = $result->fetch_assoc()) {
-        // Lakukan sesuatu dengan data guru, contohnya:
+        // Lakukan sesuatu dengan data pengajar, contohnya:
         echo 'ID: ' . $row['id'] . '<br>';
         echo 'Nama: ' . $row['nama'] . '<br>';
         echo 'Cabang ID: ' . $row['cabang_id'] . '<br>';
@@ -67,7 +67,7 @@ $connect->close();
             margin-top: 20px;
         }
 
-        .guru-section {
+        .pengajar-section {
             display: inline-flex;
             flex-direction: column;
             align-items: center;
@@ -80,12 +80,12 @@ $connect->close();
             padding: 20px;
         }
 
-        .guru-section h2,
-        .guru-section .guru-info {
+        .pengajar-section h2,
+        .pengajar-section .pengajar-info {
             font-weight: bold;
         }
 
-        .guru-section h2 {
+        .pengajar-section h2 {
             width: 128px;
             flex-shrink: 0;
             color: #333;
@@ -94,19 +94,19 @@ $connect->close();
             margin-top: 20px;
         }
 
-        .guru-section .guru-info {
+        .pengajar-section .pengajar-info {
             text-align: left;
             width: 100%;
         }
 
-        .guru-section .guru-info img {
+        .pengajar-section .pengajar-info img {
             width: 100px;
-            /* Set the width of the guru image */
+            /* Set the width of the pengajar image */
             border-radius: 50%;
             margin-right: 10px;
         }
 
-        .guru-section .guru-info p {
+        .pengajar-section .pengajar-info p {
             color: #000;
             font-family: Poppins;
             font-size: 18px;
@@ -204,9 +204,9 @@ $connect->close();
         <!-- Main content -->
         <main class="height">
     <div class="wrapper">
-        <h2>Our gurus</h2>
+        <h2>Our pengajars</h2>
         <main>
-            <section class="guru-section">
+            <section class="pengajar-section">
                 <table>
                     <thead>
                         <tr>
@@ -217,12 +217,12 @@ $connect->close();
                     </thead>
                     <tbody>
                         <?php
-                        // Loop through the gurus array
-                        foreach ($gurus as $guru) {
+                        // Loop through the pengajars array
+                        foreach ($pengajars as $pengajar) {
                             echo '<tr>';
-                            echo '<td>' . $guru['id'] . '</td>';
-                            echo '<td>' . $guru['nama'] . '</td>';
-                            echo '<td>' . $guru['cabang_id'] . '</td>';
+                            echo '<td>' . $pengajar['id'] . '</td>';
+                            echo '<td>' . $pengajar['nama'] . '</td>';
+                            echo '<td>' . $pengajar['cabang_id'] . '</td>';
                             echo '</tr>';
                         }
                         ?>
