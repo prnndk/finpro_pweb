@@ -15,7 +15,7 @@
                 <div for="validation" class="card-body">
                     <h3 class="text-left fw-bold mt-5 ms-5">Login</h3>
     
-                    <form method="post" action="login">
+                    <form method="post" action="login_proccess.php">
                         <div class="ms-5 w-75">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
                             <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

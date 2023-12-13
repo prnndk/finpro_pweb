@@ -1,12 +1,12 @@
 <?php
 
 session_start();
-// if (!isset($_SESSION['login'])) {
-//     header('Location: ../login.php');
-//     exit;
-// } else if ($_SESSION['isAdmin'] == false) {
-//     header('Location: ../index.php');
-// }
+if (!isset($_SESSION['login'])) {
+    header('Location: ../login.php');
+    exit;
+} else if ($_SESSION['isAdmin'] == false) {
+    header('Location: ../index.php');
+}
 include_once '../connection.php';
 $query_kelas_akan_datang = 'SELECT k.kode_kelas as kode, k.nama, j.jam, j.hari AS day FROM kelas k JOIN jadwal_kelas j ON k.id = j.kelas_id JOIN pengajar p ON k.pengajar_id = p.id WHERE j.hari = DAYNAME(DATE_ADD(DATE(NOW()), INTERVAL 1 DAY)) LIMIT 1';
 $result_kelas_akan_datang = mysqli_query($connect, $query_kelas_akan_datang);

@@ -5,19 +5,16 @@ session_start();
 include 'connection.php';
 
 // get data from form
-
 $email = $_POST['email'];
 $password = $_POST['password'];
-if (isset($_SESSION['login'])) {
-    header('Location: index.php');
-    exit;
-}
 
 // cek if empty
 if (empty($email) || empty($password)) {
-    header('Location: login.php?error=true');
+    $error_message = urlencode('Email and password are required.');
+    header("Location: login.php?error=$error_message");
     exit;
 }
+
 $query = "SELECT * FROM users WHERE email = '$email'";
 
 // get data from query
@@ -34,12 +31,12 @@ if (mysqli_num_rows($result) === 1) {
         header('Location: index.php');
         exit;
     } else {
-        $message = 'Invalid email or password.';
-        header("Location: login.php?error='$message'");
-        // error message
+        $error_message = urlencode('Invalid email or password.');
+        header("Location: login.php?error=$error_message");
+        exit;
     }
 } else {
-    $message = 'Invalid email or password.';
-    header("Location: login.php?error='$message'");
-    // error message
+    $error_message = urlencode('Invalid email or password.');
+    header("Location: login.php?error=$error_message");
+    exit;
 }
