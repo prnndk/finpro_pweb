@@ -9,13 +9,14 @@ include_once '../connection.php';
 include_once '../helper.php';
 global $connect;
 $user_id = getUserId();
+$siswa_id = getSiswaId();
 $get_nama_kelas_query = "SELECT nama FROM kelas WHERE id = '$kelas_id'";
 $get_nama_kelas_result = mysqli_query($connect, $get_nama_kelas_query);
 $get_nama_kelas = mysqli_fetch_assoc($get_nama_kelas_result);
 if(!$get_nama_kelas){
     header('Location: kelas.php');
 }
-$get_kelas_query = "SELECT k.nama as nama_kelas,k.kode_kelas, m.nama_materi, m.link, m.is_latihan FROM daftar_siswa d join kelas k on d.kelas_id = k.id join materi_kelas m on k.id = m.kelas_id WHERE k.id = '$kelas_id' and d.siswa_id = '$user_id'";
+$get_kelas_query = "SELECT k.nama as nama_kelas,k.kode_kelas, m.nama_materi, m.link, m.is_latihan FROM daftar_siswa d join kelas k on d.kelas_id = k.id join materi_kelas m on k.id = m.kelas_id WHERE k.id = '$kelas_id' and d.siswa_id = '$siswa_id'";
 $get_kelas_result = mysqli_query($connect, $get_kelas_query);
 $get_kelas = mysqli_fetch_all($get_kelas_result, MYSQLI_ASSOC);
 include_once '../template/header.php'; ?>

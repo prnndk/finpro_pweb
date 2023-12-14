@@ -4,7 +4,8 @@ include_once '../connection.php';
 include_once '../helper.php';
 global $connect;
 $user_id = getUserId();
-$get_pembayaran_query = "SELECT c.nama, p.total, p.deskripsi, p.bukti_pembayaran, p.is_verified FROM pembayaran p join cabang c on p.cabang_id = c.id where p.siswa_id = '$user_id'";
+$siswa_id = getSiswaId();
+$get_pembayaran_query = "SELECT c.nama, p.total, p.deskripsi, p.bukti_pembayaran, p.is_verified FROM pembayaran p join cabang c on p.cabang_id = c.id where p.siswa_id = $siswa_id";
 $get_pembayaran_result = mysqli_query($connect, $get_pembayaran_query);
 $get_pembayaran = mysqli_fetch_assoc($get_pembayaran_result);
 
@@ -17,7 +18,7 @@ include_once '../template/header.php'; ?>
         <div class="row p-3 mt-4">
             <div class="col-md-6">
                 <form action="proses_pembayaran.php" enctype="multipart/form-data" method="post">
-                    <input type="hidden" name="siswa_id" value="1">
+                    <input type="hidden" name="siswa_id" value="<?php  echo $siswa_id?>">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Cabang</label>
                     <select class="form-select" aria-label="Select cabang" name="cabang_id" >

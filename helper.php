@@ -1,5 +1,4 @@
 <?php
-
 function toIndonesiaDate()
 {
     $current_date_day = date('D');
@@ -36,6 +35,15 @@ function getUserData(){
     $result = mysqli_query($connect, $query);
     $user = mysqli_fetch_assoc($result);
     return $user;
+}
+
+function getSiswaId(){
+    include 'connection.php';
+    $user_id = getUserId();
+    $query = "SELECT * FROM siswas WHERE user_id = '$user_id'";
+    $result = mysqli_query($connect, $query);
+    $siswa = mysqli_fetch_assoc($result);
+    return $siswa['id'];
 }
 
 // static function to get user_id

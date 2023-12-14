@@ -29,7 +29,7 @@ include_once '../template/header.php'; ?>
                     <div class="card-pengajar p-4">
                         <div class="row">
                             <div class="col-md-8 d-flex flex-column justify-content-start">
-                                <h4 class="fw-bold"><?php echo toIndonesiaDate($item['hari']); ?></h4>
+                                <h4 class="fw-bold"><?php echo indonesiaDate($item['hari']); ?></h4>
                                 <h6><?php echo $item['jam']; ?></h6>
                             </div>
                             <div class="col-md-4 d-flex flex-column justify-content-end">

@@ -5,13 +5,14 @@ include_once '../connection.php';
 include_once '../helper.php';
 global $connect;
 $user_id = getUserId();
+$siswa_id = getSiswaId();
 $query_kelas = "SELECT nama, kode_kelas from kelas where id = '$kelas_id'";
 $result_kelas = mysqli_query($connect, $query_kelas);
 $kelas = mysqli_fetch_assoc($result_kelas);
 if (!$kelas) {
     header('Location:absensi.php?error=true');
 }
-$query_presensi_siswa_query = "SELECT a.expired_at, a.created_at, abs.kehadiran FROM absen_kelas a left join absen_siswa abs on a.id = abs.absen_id where a.kelas_id = '$kelas_id' AND abs.siswa_id = '$user_id'";
+$query_presensi_siswa_query = "SELECT a.expired_at, a.created_at, abs.kehadiran FROM absen_kelas a left join absen_siswa abs on a.id = abs.absen_id where a.kelas_id = '$kelas_id' AND abs.siswa_id = '$siswa_id'";
 $query_presensi_siswa_result = mysqli_query($connect, $query_presensi_siswa_query);
 $presensi_siswa = mysqli_fetch_all($query_presensi_siswa_result, MYSQLI_ASSOC);
 $presensi_siswa = array_map(function ($item) {
@@ -65,7 +66,7 @@ include_once '../template/header.php'; ?>
                     <input type="text" name="kode_absen" id="kode_absen" placeholder="Kode Absen" maxlength="6"
                         class="form-control mb-3" />
                     <input type="hidden" name="kelas_id" id="kelas_id" value="<?php echo $kelas_id; ?>" />
-                    <input type="hidden" name="siswa_id" id="siswa_id" value="<?php echo 1; ?>" />
+                    <input type="hidden" name="siswa_id" id="siswa_id" value="<?php echo $siswa_id; ?>" />
                     <input type="submit" name="insert" id="insert" value="Presensi" class="btn btn-primary" />
                 </form>
             </div>

@@ -35,7 +35,7 @@
 
     <div class="row pt-5 mt-5 pb-5 bg-info">
         <h1 class="text-center text-light fw-bold">Aktual Cendekia Course</h1>
-        <h3 class="text-center text-light fw-light">bimbel yang lorem ipsum</h3>
+        <h5 class="text-center text-light fw-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa expedita itaque neque nesciunt rem? Excepturi laboriosam quaerat sed velit. A commodi eligendi in iusto molestias nihil nobis praesentium quis similique!</h5>
 
     </div>
     <div class="row">
@@ -48,8 +48,8 @@
             </div>
         </div>
 
-        <div class="col-10 pt-5 pb-5 border-3 shadow bg-light rounded-1">
-            <div class="row justify-content-around">
+        <div class="col-10 pt-5 pb-5 border-3 shadow bg-light rounded-4">
+            <div class="row justify-content-between">
                 <div class="col-3 text-center">
                     <img src="image/go_to_class.png" class="img-fluid" alt="gotoclass">
                     <div class="text-center">

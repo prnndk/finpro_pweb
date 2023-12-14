@@ -1,6 +1,9 @@
 <?php
 require_once '../isAdmin.php';
 include_once '../connection.php';
+include_once '../helper.php';
+global $connect;
+$admin_id = getUserId();
 $pembayaran_query = "SELECT p.id, p.total, p.deskripsi, p.is_verified,p.bukti_pembayaran, s.nama as nama_siswa, p.siswa_id, p.cabang_id FROM pembayaran p join siswas s on p.siswa_id = s.id";
 $pembayaran_result = mysqli_query($connect, $pembayaran_query);
 $pembayaran = mysqli_fetch_all($pembayaran_result, MYSQLI_ASSOC);
@@ -43,7 +46,7 @@ include_once '../template/header.php'; ?>
                             </div>
                             <div class="modal-body">
                                 <div id="error_catcher"></div>
-                                <form method="post" id="verifikasi_pembayaran">
+                                <form method="post" id="verifikasi_pembayaran_<?php echo $item['id'];?>" >
                                     <label for="total">Total Pembayaran</label>
                                     <input type="text" name="total" id="total" class="form-control mb-3"
                                            value="<?php echo $item['total'] ?>">
@@ -59,6 +62,9 @@ include_once '../template/header.php'; ?>
                                            value="<?php echo $item['siswa_id']; ?>"/>
                                     <input type="hidden" name="cabang_id" id="cabang_id"
                                            value="<?php echo $item['cabang_id']; ?>"/>
+                                    <input type="hidden" name="verified_by" id="verified_by"
+                                           value="<?php echo $admin_id; ?>"/>
+
                                     <button type="submit" id="insert_button" class="btn btn-primary">Verifikasi</button>
                                 </form>
                             </div>
@@ -68,40 +74,41 @@ include_once '../template/header.php'; ?>
                         </div>
                     </div>
                 </div>
+                <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('#verifikasi_pembayaran_<?php echo $item['id']?>').on("submit", function (event) {
+                            event.preventDefault();
+                            if ($('#pembayaran_id').val() == "") {
+                                alert("pembayaran id is required");
+                            } else {
+                                $.ajax({
+                                    url: "verifikasi_pembayaran.php",
+                                    method: "POST",
+                                    data: $('#verifikasi_pembayaran_<?php echo $item['id']?>').serialize(),
+                                    success: function (data) {
+                                        $('#verifikasi_pembayaran_<?php echo $item['id']?>')[0].reset();
+                                        $('.modal-body #error_catcher').append(
+                                            `<div class="alert alert-success" role="alert">Berhasil Merubah Nilai</div>`
+                                        );
+                                        location.reload()
+                                    },
+                                    error: function (param) {
+                                        const error_msg = JSON.parse(param.responseText);
+                                        $('.modal-body #error_catcher').append(`<div class="alert alert-danger" role="alert">
+                            ${error_msg.error}
+                        </div>`);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
             <?php } ?>
             </tbody>
         </table>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function () {
-            $('#verifikasi_pembayaran').on("submit", function (event) {
-                event.preventDefault();
-                if ($('#pembayaran_id').val() == "") {
-                    alert("pembayaran id is required");
-                } else {
-                    $.ajax({
-                        url: "verifikasi_pembayaran.php",
-                        method: "POST",
-                        data: $('#verifikasi_pembayaran').serialize(),
-                        success: function (data) {
-                            $('#verifikasi_pembayaran')[0].reset();
-                            $('.modal-body #error_catcher').append(
-                                `<div class="alert alert-success" role="alert">Berhasil Merubah Nilai</div>`
-                            );
-                            location.reload()
-                        },
-                        error: function (param) {
-                            const error_msg = JSON.parse(param.responseText);
-                            $('.modal-body #error_catcher').append(`<div class="alert alert-danger" role="alert">
-                            ${error_msg.error}
-                        </div>`);
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+
 <?php
 include_once '../template/footer.php';

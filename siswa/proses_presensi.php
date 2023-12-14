@@ -17,7 +17,7 @@ if (!empty($_POST)) {
         exit;
     }
     $cek_kode_id = $cek_kode['id'];
-    $cek_is_already_absen_query = "SELECT * FROM absen_siswa where absen_id = '$cek_kode_id'and siswa_id = '$siswa_id'";
+    $cek_is_already_absen_query = "SELECT * FROM absen_siswa where absen_id = '$cek_kode_id'and siswa_id = '$siswa_id' and kehadiran = 'HADIR'";
     $cek_is_already_absen_result = mysqli_query($connect, $cek_is_already_absen_query);
     $cek_is_already_absen = mysqli_fetch_assoc($cek_is_already_absen_result);
     if ($cek_is_already_absen) {
@@ -27,7 +27,7 @@ if (!empty($_POST)) {
         echo json_encode($response);
         exit;
     }
-    $insert_absen_query = "INSERT INTO absen_siswa (siswa_id, absen_id, kehadiran) VALUES ('$siswa_id', '$cek_kode_id', 'HADIR')";
+    $insert_absen_query = "UPDATE absen_siswa SET kehadiran = 'HADIR' WHERE absen_id = '$cek_kode_id' and siswa_id = '$siswa_id'";
     $insert_absen_result = mysqli_query($connect, $insert_absen_query);
     if ($insert_absen_result) {
         // return error json

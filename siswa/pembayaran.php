@@ -4,7 +4,8 @@ include_once '../connection.php';
 include_once '../helper.php';
 global $connect;
 $user_id = getUserId();
-$get_pembayaran_query = "SELECT c.nama, p.total, p.deskripsi, p.bukti_pembayaran, p.is_verified FROM pembayaran p join cabang c on p.cabang_id = c.id where p.siswa_id = '$user_id'";
+$siswa_id = getSiswaId();
+$get_pembayaran_query = "SELECT c.nama, p.total, p.deskripsi, p.bukti_pembayaran, p.is_verified FROM pembayaran p join cabang c on p.cabang_id = c.id where p.siswa_id = '$siswa_id'";
 $get_pembayaran_result = mysqli_query($connect, $get_pembayaran_query);
 $get_pembayaran = mysqli_fetch_assoc($get_pembayaran_result);
 
