@@ -1,13 +1,16 @@
 <?php
 require_once '../isAdmin.php';
 include_once '../connection.php';
-$absen_kelas_siswa_query = 'SELECT k.id, k.nama,k.kode_kelas, c.nama as nama_cabang, p.nama as nama_pengajar FROM kelas k join pengajar p on k.pengajar_id = p.id join cabang c on k.cabang_id = c.id';
+global $connect;
+$absen_kelas_siswa_query = 'SELECT k.id, k.nama,k.kode_kelas, c.nama as nama_cabang, p.nama as nama_pengajar,p.id as pengajar_id FROM kelas k join pengajar p on k.pengajar_id = p.id join cabang c on k.cabang_id = c.id';
 $absen_kelas_siswa_result = mysqli_query($connect, $absen_kelas_siswa_query);
 $absen_kelas_siswa = mysqli_fetch_all($absen_kelas_siswa_result, MYSQLI_ASSOC);
 include_once '../template/header.php'; ?>
     <div class="container container-boxed main-content">
         <div class="container-header fw-semibold">Data Kelas dan Jadwal</div>
-        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#tambahKelas">Tambah Kelas</button>
+        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#tambahKelas">Tambah
+            Kelas
+        </button>
         <div class="row">
             <?php foreach ($absen_kelas_siswa as $presensi) { ?>
                 <div class="col-md-6">
@@ -17,17 +20,18 @@ include_once '../template/header.php'; ?>
                                 <h4 class="fw-bold"><?php echo $presensi['nama']; ?></h4>
                                 <h6><?php echo $presensi['kode_kelas']; ?></h6>
                                 <div class="d-flex gap-2">
-                                    <a href="list_presensi.php?kelas_id=<?php echo $presensi['id']; ?>"
-                                       class="btn btn-success btn-sm">Lihat Presensi</a>
-                                    <a href="daftar_materi.php?id=<?php echo $presensi['id']; ?>"
-                                       class="btn btn-info btn-sm">Materi Kelas</a>
+                                    <a href="list_presensi.php?kelas_id=<?php echo $presensi['id'] . "&pengajar_id=" . $presensi['pengajar_id']; ?>"
+                                       class="btn btn-success btn-sm">Presensi</a>
+                                    <a href="list_materi.php?id=<?php echo $presensi['id']; ?>"
+                                       class="btn btn-info btn-sm">Materi</a>
                                     <a href="list_jadwal.php?id=<?php echo $presensi['id']; ?>"
                                        class="btn btn-primary btn-sm">Jadwal</a>
+                                    <a href="list_peserta_kelas.php?id=<?php echo $presensi['id']; ?>"
+                                       class="btn btn-outline-dark btn-sm">Peserta</a>
                                 </div>
                             </div>
                             <div class="col-md-4 d-flex flex-column justify-content-end">
                                 <h5 class="fw-semibold"><?php echo $presensi['nama_pengajar']; ?></h5>
-<!--                                <h6>--><?php //echo $presensi['hari'] . " " . $presensi['jam']; ?><!--</h6>-->
                                 <p><?php echo $presensi['nama_cabang']; ?></p>
                             </div>
                         </div>
@@ -70,7 +74,7 @@ include_once '../template/header.php'; ?>
                                 <option value="<?php echo $cabang['id']; ?>"><?php echo $cabang['nama']; ?></option>
                             <?php } ?>
                         </select>
-                        <button type="submit"  id="insert_button" class="btn btn-primary" >Tambah Kelas</button>
+                        <button type="submit" id="insert_button" class="btn btn-primary">Tambah Kelas</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -82,8 +86,8 @@ include_once '../template/header.php'; ?>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function() {
-            $('#tambah_kelas').on("submit", function(event) {
+        $(document).ready(function () {
+            $('#tambah_kelas').on("submit", function (event) {
                 event.preventDefault();
                 if ($('#nama').val() == "") {
                     alert("nama is required");
@@ -92,14 +96,14 @@ include_once '../template/header.php'; ?>
                         url: "tambah_kelas.php",
                         method: "POST",
                         data: $('#tambah_kelas').serialize(),
-                        success: function(data) {
+                        success: function (data) {
                             $('#tambah_kelas')[0].reset();
                             $('.modal-body #error_catcher').append(
                                 `<div class="alert alert-success" role="alert">Berhasil Menambahkan Kelas</div>`
                             );
                             // location.reload()
                         },
-                        error: function(param) {
+                        error: function (param) {
                             const error_msg = JSON.parse(param.responseText);
                             $('.modal-body #error_catcher').append(`<div class="alert alert-danger" role="alert">
                             ${error_msg.error}

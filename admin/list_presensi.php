@@ -68,7 +68,7 @@ include_once '../template/header.php'; ?>
                     <input type="datetime-local" name="expired_at" id="expired_at" class="form-control mb-3">
                     <input type="hidden" name="kelas_id" id="kelas_id" value="<?php echo $kelas_id; ?>" />
                     <input type="hidden" name="pengajar_id" id="pengajar_id" value="<?php echo $pengajar_id; ?>" />
-                    <button type="submit"  id="insert_button" class="btn btn-primary">Buat Presensi</button>
+                    <button type="submit" id="insert_button" class="btn btn-primary">Buat Presensi</button>
                 </form>
             </div>
             <div class="modal-footer">

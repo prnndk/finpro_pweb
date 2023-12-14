@@ -8,7 +8,7 @@ $result_kelas = mysqli_query($connect, $query_kelas);
 $total_kelas = mysqli_fetch_assoc($result_kelas)['total_kelas'];
 
 // count total pendaftar
-$query_siswa = 'SELECT COUNT(*) AS total_siswa FROM siswas s join pembayaran p on s.id = p.siswa_id WHERE p.is_verified = 1';
+$query_siswa = 'SELECT COUNT(*) AS total_siswa FROM siswas s left join pembayaran p on s.id = p.siswa_id';
 $result_siswa = mysqli_query($connect, $query_siswa);
 $total_siswa = mysqli_fetch_assoc($result_siswa)['total_siswa'];
 
@@ -21,6 +21,11 @@ $total_pengajar = mysqli_fetch_assoc($result_pengajar)['total_pengajar'];
 $query_diterima = 'SELECT COUNT(*) as diterima from pembayaran where is_verified = true';
 $result_diterima = mysqli_query($connect, $query_diterima);
 $diterima = mysqli_fetch_assoc($result_diterima)['diterima'];
+
+// statistik total cabang
+$query_cabang = 'SELECT COUNT(*) as total_cabang from cabang';
+$result_cabang = mysqli_query($connect, $query_cabang);
+$total_cabang = mysqli_fetch_assoc($result_cabang)['total_cabang'];
 
 $query_ditolak = 'SELECT COUNT(*) as ditolak from pembayaran where is_verified = false';
 $result_ditolak = mysqli_query($connect, $query_ditolak);
@@ -50,6 +55,12 @@ require_once '../template/header.php';
             <div class="card-statistic">
                 <div class="card-statistic-number csn-info"><?php echo $total_pengajar; ?></div>
                 <div class="card-statistic-text">Total Pengajar</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-statistic">
+                <div class="card-statistic-number csn-info"><?php echo $total_cabang; ?></div>
+                <div class="card-statistic-text">Total Cabang</div>
             </div>
         </div>
     </div>
