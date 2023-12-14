@@ -22,7 +22,7 @@
                         <a class="nav-link active" href="#lokasi">Lokasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Informasi</a>
+                        <a class="nav-link active" href="#informasi">Informasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="siswa/dashboard.php">Mata Pelajaran</a>
@@ -67,7 +67,7 @@
                 <div class="col-3 text-center">
                     <img src="image/teacher_list.png" class="img-fluid" alt="teacherlist">
                     <div class="text-center">
-                        <a href="#" class="btn text-black btn-outline-light" onclick="goToPage()">Teacher List</a>
+                        <a href="admin/daftar_guru.php" class="btn text-black btn-outline-light" onclick="goToPage()">Teacher List</a>
                     </div>
                 </div>
             </div>
@@ -148,7 +148,7 @@
     </div>
 
     <div class="text-center mb-5">
-        <a href="#" class="btn btn-light btn-outline-info">Go To Detail</a>
+        <a href="faq.html" id="informasi" class="btn btn-light btn-outline-info">Go To Detail</a>
     </div>
         
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
