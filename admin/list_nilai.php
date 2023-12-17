@@ -21,7 +21,8 @@ include_once '../template/header.php'; ?>
     <div class="container container-boxed main-content">
         <div class="container-header">Daftar Nilai Siswa <?= $kelas['nama_kelas'] ?></div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#nilaiModal">Tambah Nilai</button>
+                data-bs-target="#nilaiModal">Tambah Nilai
+        </button>
         <table class="table">
             <thead>
             <tr>
@@ -39,24 +40,35 @@ include_once '../template/header.php'; ?>
                     <td><?php echo $nilai['nama_siswa']; ?></td>
                     <td><?php echo $nilai['nilai']; ?></td>
                     <td><?php echo $nilai['catatan']; ?></td>
-                    <td><button data-nilai-id="<?php echo $nilai['id']; ?>" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#nilaiModal<?php echo $nilai['id'];?>">Rubah Nilai</button></td>
+                    <td>
+                        <button data-nilai-id="<?php echo $nilai['id']; ?>" class="btn btn-primary btn-sm"
+                                data-bs-toggle="modal" data-bs-target="#nilaiModal<?php echo $nilai['id']; ?>">Rubah
+                            Nilai
+                        </button>
+                    </td>
                 </tr>
-                <div class="modal fade" id="nilaiModal<?php echo $nilai['id']?>" tabindex="-1" aria-labelledby="presensiModal" aria-hidden="true">
+                <div class="modal fade" id="nilaiModal<?php echo $nilai['id'] ?>" tabindex="-1"
+                     aria-labelledby="presensiModal" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="presensiModalLabel">Rubah Nilai Siswa</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div id="error_catcher"></div>
-                                <form method="post" id="rubah_nilai">
+                                <form method="post" id="rubah_nilai<?php echo $nilai['id'] ?>">
                                     <label for="nilai_siswa">Nilai Siswa</label>
-                                    <input type="text" name="nilai_siswa" id="nilai_siswa" class="form-control mb-3" value="<?php echo $nilai['nilai']?>">
+                                    <input type="text" name="nilai_siswa" id="nilai_siswa" class="form-control mb-3"
+                                           value="<?php echo $nilai['nilai'] ?>">
                                     <label for="nilai_siswa">Catatan Nilai Siswa</label>
-                                    <input type="text" name="catatan" id="catatan" class="form-control mb-3" value="<?php echo $nilai['catatan']?>">
-                                    <input type="hidden" name="nilai_siswa_id" id="nilai_siswa_id" value="<?php echo $nilai['id']; ?>" />
-                                    <button type="submit"  id="insert_button" class="btn btn-primary" >Rubah Nilai</button>
+                                    <input type="text" name="catatan" id="catatan" class="form-control mb-3"
+                                           value="<?php echo $nilai['catatan'] ?>">
+                                    <input type="hidden" name="nilai_siswa_id" id="nilai_siswa_id"
+                                           value="<?php echo $nilai['id']; ?>"/>
+                                    <button type="submit" id="insert_button" class="btn btn-primary">Rubah Nilai
+                                    </button>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -65,6 +77,41 @@ include_once '../template/header.php'; ?>
                         </div>
                     </div>
                 </div>
+                <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+                        crossorigin="anonymous"></script>
+                <script>$(document).ready(function () {
+                        $('#rubah_nilai<?php echo $nilai['id'] ?>').on("submit", function (event) {
+                            event.preventDefault();
+                            // cek nilai is float
+                            if (!$.isNumeric($('#nilai_siswa').val())) {
+                                alert("Nilai harus angka");
+                            } else if ($('#Nilai').val() == "") {
+                                alert("Nilai is required");
+                            } else {
+                                $.ajax({
+                                    url: "rubah_nilai.php",
+                                    method: "POST",
+                                    data: $('#rubah_nilai<?php echo $nilai['id'] ?>').serialize(),
+                                    success: function (data) {
+                                        $('#rubah_nilai')[0].reset();
+                                        $('.modal-body #error_catcher').append(
+                                            `<div class="alert alert-success" role="alert">Berhasil Merubah Nilai</div>`
+                                        );
+                                        location.reload()
+                                    },
+                                    error: function (param) {
+                                        const error_msg = JSON.parse(param.responseText);
+                                        $('.modal-body #error_catcher').append(`<div class="alert alert-danger" role="alert">
+                            ${error_msg.error}
+                        </div>`);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+
             <?php } ?>
             </tbody>
         </table>
@@ -83,7 +130,7 @@ include_once '../template/header.php'; ?>
                         <input type="text" name="nilai_siswa" id="nilai_siswa_input" class="form-control mb-3">
                         <label for="catatan">Catatan Nilai Siswa</label>
                         <input type="text" name="catatan" id="catatan_input" class="form-control mb-3">
-<!--                        select siswa-->
+                        <!--                        select siswa-->
                         <label for="siswa_id">Siswa</label>
                         <select name="siswa_id" id="siswa_id" class="form-control mb-3">
                             <?php
@@ -97,7 +144,7 @@ include_once '../template/header.php'; ?>
                         </select>
                         <input type="hidden" name="kelas_id" id="kelas_id" value="<?php echo $kelas_id ?>"/>
                         <input type="hidden" name="pengajar_id" id="pengajar_id" value="<?php echo $pengajar_id ?>"/>
-                        <button type="submit"  id="input_nilai_btn" class="btn btn-primary" >Tambah Nilai</button>
+                        <button type="submit" id="input_nilai_btn" class="btn btn-primary">Tambah Nilai</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -109,45 +156,14 @@ include_once '../template/header.php'; ?>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function() {
-            $('#rubah_nilai').on("submit", function(event) {
-                event.preventDefault();
-                // cek nilai is float
-                if (!$.isNumeric($('#nilai_siswa').val())) {
-                    alert("Nilai harus angka");
-                } else
-                if ($('#Nilai').val() == "") {
-                    alert("Nilai is required");
-                } else {
-                    $.ajax({
-                        url: "rubah_nilai.php",
-                        method: "POST",
-                        data: $('#rubah_nilai').serialize(),
-                        success: function(data) {
-                            $('#rubah_nilai')[0].reset();
-                            $('.modal-body #error_catcher').append(
-                                `<div class="alert alert-success" role="alert">Berhasil Merubah Nilai</div>`
-                            );
-                            location.reload()
-                        },
-                        error: function(param) {
-                            const error_msg = JSON.parse(param.responseText);
-                            $('.modal-body #error_catcher').append(`<div class="alert alert-danger" role="alert">
-                            ${error_msg.error}
-                        </div>`);
-                        }
-                    });
-                }
-            });
-            $('#input_nilai').on("submit", function(event) {
+        $(document).ready(function () {
+            $('#input_nilai').on("submit", function (event) {
                 event.preventDefault();
                 if (!$.isNumeric($('#nilai_siswa_input').val())) {
                     alert("Nilai harus angka");
-                } else
-                    if($('#siswa_id').val() == "") {
-                        alert("Cannot be null");
-                    } else
-                if ($('#nilai_siswa_input').val() == "") {
+                } else if ($('#siswa_id').val() == "") {
+                    alert("Cannot be null");
+                } else if ($('#nilai_siswa_input').val() == "") {
                     alert("Nilai is required");
                 } else {
 
@@ -155,14 +171,14 @@ include_once '../template/header.php'; ?>
                         url: "tambah_nilai.php",
                         method: "POST",
                         data: $('#input_nilai').serialize(),
-                        success: function(data) {
+                        success: function (data) {
                             $('#input_nilai')[0].reset();
                             $('.modal-body #error_catcher').append(
                                 `<div class="alert alert-success" role="alert">Berhasil Merubah Nilai</div>`
                             );
                             location.reload()
                         },
-                        error: function(param) {
+                        error: function (param) {
                             const error_msg = JSON.parse(param.responseText);
                             $('.modal-body #error_catcher').append(`<div class="alert alert-danger" role="alert">
                             ${error_msg.error}

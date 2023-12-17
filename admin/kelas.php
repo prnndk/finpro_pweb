@@ -101,7 +101,7 @@ include_once '../template/header.php'; ?>
                             $('.modal-body #error_catcher').append(
                                 `<div class="alert alert-success" role="alert">Berhasil Menambahkan Kelas</div>`
                             );
-                            // location.reload()
+                            location.reload()
                         },
                         error: function (param) {
                             const error_msg = JSON.parse(param.responseText);

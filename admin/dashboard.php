@@ -2,6 +2,7 @@
 
 require_once '../isAdmin.php';
 include_once '../connection.php';
+global $connect;
 // count tota kelas
 $query_kelas = 'SELECT COUNT(*) AS total_kelas FROM kelas';
 $result_kelas = mysqli_query($connect, $query_kelas);

@@ -96,7 +96,7 @@ include_once '../template/header.php';
                     $('#error_catcher_materi').append(
                         `<div class="alert alert-success" role="alert">Berhasil Menambah Materi</div>`
                     );
-                    // location.reload();
+                    location.reload();
                 },
                 error: function(param) {
                     const error_msg = JSON.parse(param.responseText);

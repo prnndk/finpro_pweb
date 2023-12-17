@@ -33,7 +33,7 @@
         </div>
     </nav>
 
-    <div class="row pt-5 mt-5 pb-5 bg-info">
+    <div class="row p-5 mt-5 bg-info">
         <h1 class="text-center text-light fw-bold">Aktual Cendekia Course</h1>
         <h5 class="text-center text-light fw-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa expedita itaque neque nesciunt rem? Excepturi laboriosam quaerat sed velit. A commodi eligendi in iusto molestias nihil nobis praesentium quis similique!</h5>
 

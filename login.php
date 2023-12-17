@@ -14,10 +14,10 @@ if(isset($_SESSION['login'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   </head>
   <body class="bg-primary">
-        <div class="row mt-5 pt-5 mb-5 pb-5 mx-0">
+        <div class="row my-5 py-5 mx-0">
           <div class="col-3">
           </div>
-          <div class="col-9 rounded-end rounded-4 bg-light">
+          <div class="col-9 border border-end rounded-end rounded-4 bg-light">
             <div class="">
                 <div for="validation" class="card-body">
                     <h3 class="text-left fw-bold mt-5 ms-5">Login</h3>
@@ -30,9 +30,9 @@ if(isset($_SESSION['login'])){
                             <label for="exampleInputPassword1" class="form-label">Password</label>
                             <input type="password" name="password" class="form-control mb-4" id="exampleInputPassword1" required>
                         </div>
-                        <div class="mb-5 ms-5 w-100">
-                            <button type="submit" class="btn btn-outline-primary w-75">Login</button>
-                            <div id="Signup" class="form-text text-center mt-3 w-75">
+                        <div class="mb-5 ms-5 w-75">
+                            <button type="submit" class="btn btn-outline-primary w-100">Login</button>
+                            <div id="Signup" class="form-text text-center mt-3 w-100">
                                 Doesn't have account? <a class="text-primary" href="register.php">Signup here</a>
                             </div>
                         </div>

@@ -10,7 +10,7 @@ include_once '../helper.php';
 $user_id = getUserId();
 $siswa_id = getSiswaId();
 $user = getUserData();
-$query_kelas_akan_datang = 'SELECT k.kode_kelas as kode, k.nama, j.jam, j.hari AS day FROM kelas k JOIN jadwal_kelas j ON k.id = j.kelas_id JOIN pengajar p ON k.pengajar_id = p.id WHERE j.hari = DAYNAME(DATE_ADD(DATE(NOW()), INTERVAL 1 DAY)) LIMIT 1';
+$query_kelas_akan_datang = 'SELECT k.kode_kelas as kode, k.nama, j.jam, j.hari AS day FROM kelas k JOIN daftar_siswa ds on k.id = ds.kelas_id JOIN jadwal_kelas j ON k.id = j.kelas_id JOIN pengajar p ON k.pengajar_id = p.id WHERE j.hari = DAYNAME(DATE_ADD(DATE(NOW()), INTERVAL 1 DAY)) AND ds.siswa_id = '.$siswa_id.' LIMIT 1';
 $result_kelas_akan_datang = mysqli_query($connect, $query_kelas_akan_datang);
 $kelas_akan_datang = mysqli_fetch_row($result_kelas_akan_datang);
 $query_get_kelas_user = "SELECT k.nama, k.kode_kelas, j.hari, j.jam, d.kelas_id FROM daftar_siswa d JOIN kelas k ON d.kelas_id = k.id JOIN jadwal_kelas j ON k.id = j.kelas_id WHERE d.siswa_id = '$siswa_id' GROUP BY j.hari, k.nama, k.kode_kelas, j.jam, d.kelas_id";

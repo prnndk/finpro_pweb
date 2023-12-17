@@ -84,7 +84,7 @@ $(document).ready(function() {
                 $('#error_catcher').append(
                     `<div class="alert alert-success" role="alert">Berhasil Menambah Peserta Kelas</div>`
                 );
-                // location.reload();
+                location.reload();
             },
             error: function(param) {
                 const error_msg = JSON.parse(param.responseText);

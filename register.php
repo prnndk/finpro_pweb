@@ -18,7 +18,7 @@ if (isset($_SESSION["user"])) {
 </head>
 
 <body class="bg-primary">
-    <div class="row ,y-5 py-5 mx-0 ">
+    <div class="row ,y-5 py-5 mx-0">
         <div class="col-9 border rounded-start rounded-4 bg-light">
             <div class="">
                 <div for="validation" class="card-body">
